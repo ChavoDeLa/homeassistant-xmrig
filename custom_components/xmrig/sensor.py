@@ -87,6 +87,13 @@ _SENSORS: Dict[str, Dict[str, Any]] = {
         SETUP_DATA: ["algo"],
         SETUP_ICON: "mdi:application-braces-outline",
     },
+    "hashrate_max": {
+        SETUP_NAME: "Hashrate Max",
+        SETUP_FACTORY: lambda: XmrigSensorSimple,
+        SETUP_DATA: ["hashrate", "highest"],
+        SETUP_UNIT: "H/s",
+        SETUP_ICON: "mdi:gauge",
+    },
 }
 
 
