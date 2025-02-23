@@ -65,14 +65,14 @@ _SENSORS: Dict[str, Dict[str, Any]] = {
         SETUP_NAME: "Shares good",
         SETUP_FACTORY: lambda: XmrigSensorSimple,
         SETUP_DATA: ["results", "shares_good"],
-        SETUP_UNIT: "cnt",
+        SETUP_UNIT: "shares",
         SETUP_ICON: "mdi:counter",
     },
     "shares_total": {
         SETUP_NAME: "Shares total",
         SETUP_FACTORY: lambda: XmrigSensorSimple,
         SETUP_DATA: ["results", "shares_total"],
-        SETUP_UNIT: "cnt",
+        SETUP_UNIT: "shares",
         SETUP_ICON: "mdi:counter",
     },
     "connection": {
@@ -105,7 +105,7 @@ _SENSORS: Dict[str, Dict[str, Any]] = {
         SETUP_NAME: "Total Hashes",
         SETUP_FACTORY: lambda: XmrigSensorSimple,
         SETUP_DATA: ["results", "hashes_total"],
-        SETUP_UNIT: "cnt",
+        SETUP_UNIT: "hashes",
         SETUP_ICON: "mdi:counter",
     },
     "uptime": {
@@ -125,7 +125,7 @@ _SENSORS: Dict[str, Dict[str, Any]] = {
         SETUP_NAME: "Available Threads",
         SETUP_FACTORY: lambda: XmrigSensorSimple,
         SETUP_DATA: ["cpu", "threads"],
-        SETUP_UNIT: "cnt",
+        SETUP_UNIT: "threads",
         SETUP_ICON: "mdi:application-braces-outline",
     },
 }
