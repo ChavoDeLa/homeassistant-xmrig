@@ -94,6 +94,40 @@ _SENSORS: Dict[str, Dict[str, Any]] = {
         SETUP_UNIT: "H/s",
         SETUP_ICON: "mdi:gauge",
     },
+     "avg_time": {
+        SETUP_NAME: "Avg Time",
+        SETUP_FACTORY: lambda: XmrigSensorSimple,
+        SETUP_DATA: ["results", "avg_time"],
+        SETUP_UNIT: "s",
+        SETUP_ICON: "mdi:counter",
+    },
+    "hashes_total": {
+        SETUP_NAME: "Total Hashes",
+        SETUP_FACTORY: lambda: XmrigSensorSimple,
+        SETUP_DATA: ["results", "hashes_total"],
+        SETUP_UNIT: "cnt",
+        SETUP_ICON: "mdi:counter",
+    },
+    "uptime": {
+        SETUP_NAME: "uptime",
+        SETUP_FACTORY: lambda: XmrigSensorSimple,
+        SETUP_DATA: ["connection", "uptime"],
+        SETUP_UNIT: "s",
+        SETUP_ICON: "mdi:counter",
+    },
+    "cpu": {
+        SETUP_NAME: "cpu",
+        SETUP_FACTORY: lambda: XmrigSensorSimple,
+        SETUP_DATA: ["cpu", "brand"],
+        SETUP_ICON: "mdi:application-braces-outline",
+    },
+    "cpu_threads_available": {
+        SETUP_NAME: "Available Threads",
+        SETUP_FACTORY: lambda: XmrigSensorSimple,
+        SETUP_DATA: ["cpu", "threads"],
+        SETUP_UNIT: "cnt",
+        SETUP_ICON: "mdi:application-braces-outline",
+    },
 }
 
 
