@@ -1,5 +1,8 @@
 import logging
+import json
 from homeassistant.components.sensor import SensorEntity
+
+from .const import DATA_CONTROLLER, CONF_NAME  # Import constants
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -9,13 +12,20 @@ class XmrigConfigSensor(SensorEntity):
     def __init__(self, controller):
         """Initialize the sensor."""
         self.controller = controller
-        self._attr_name = "XMRig Config"
-        self._attr_unique_id = "xmrig_config"
+        self._attr_name = f"{controller._name} Config" # use name from controller
+        self._attr_unique_id = f"{controller.entity_id}_xmrig_config" # use entity_id from controller
 
     @property
     def native_value(self):
-        """Return a placeholder string (config stored as attributes)."""
-        return "Config Data"
+        """Return full config data as json string."""
+        config_data = self.controller.data.get("config", {})
+        if not config_data:
+            return "No Config Data"
+        try:
+            return json.dumps(config_data)
+        except TypeError:
+            _LOGGER.warning("Config data is not JSON serializable.")
+            return "Config data error"
 
     @property
     def extra_state_attributes(self):
@@ -28,7 +38,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     """Set up the config sensor."""
     _LOGGER.debug("Setting up XMRig Config sensor")
 
-    # Access the controller correctly
+    # Access the controller correctly using constant
     controller = hass.data["xmrig"][DATA_CONTROLLER].get(entry.entry_id)
     if not controller:
         _LOGGER.error("XMRig controller not found for Config sensor")
