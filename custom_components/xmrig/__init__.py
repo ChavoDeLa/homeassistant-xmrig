@@ -1,72 +1,57 @@
-"""XMRIG custom component."""
-# from config.custom_components.xmrpool_stat.sensor import XmrPoolStatisticsSensor
-from copy import copy
 import logging
-import voluptuous as vol
+import asyncio
+import aiohttp
+import async_timeout
+from datetime import timedelta
 
-from homeassistant import config_entries
-from homeassistant.const import CONF_NAME
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import config_validation as cv, device_registry as dr
-
-from .const import (
-    CONF_ADDRESS,
-    CONF_TOKEN,
-    DATA_CONTROLLER,
-    DOMAIN,
-)
-
-from .summary_controller import SummaryController
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 _LOGGER = logging.getLogger(__name__)
 
+SCAN_INTERVAL = timedelta(seconds=30)
 
-async def async_setup(hass: HomeAssistant, config: dict) -> bool:
-    """XMRIG custom component."""
-    _LOGGER.debug(f"async_setup({config})")
-    hass.data[DOMAIN] = {}
-    hass.data[DOMAIN][DATA_CONTROLLER] = {}
+class XmrigData:
+    """Class to manage fetching XMRIG data."""
 
-    return True
+    def __init__(self, hass: HomeAssistant, url: str):
+        """Initialize the data object."""
+        self._hass = hass
+        self._url = url
+        self.data = {}
+        
+    async def async_update(self):
+        """Fetch data from XMRIG endpoints."""
+        await self._fetch_summary()
+        await self._fetch_backends()
+        await self._fetch_config()
 
+    async def _fetch_summary(self):
+        """Fetch summary data."""
+        url = f"{self._url}/2/summary"
+        self.data['summary'] = await self._fetch_data(url)
 
-async def async_setup_entry(
-    hass: HomeAssistant, config_entry: config_entries.ConfigEntry
-) -> bool:
-    """Set up a xmrig."""
-    _LOGGER.debug(
-        "async_setup_entry({0}), state: {1}".format(
-            config_entry.data[CONF_NAME], config_entry.state
-        )
-    )
+    async def _fetch_backends(self):
+        """Fetch backends data."""
+        url = f"{self._url}/2/backends"
+        backends_data = await self._fetch_data(url)
+        self.data['threads_length'] = len(backends_data.get('threads', []))
 
-    # create, initialize and preserve controler
-    controller = SummaryController(hass, config_entry)
-    # await controller.async_update()
-    # if not controller.data:
-    #   raise ConfigEntryNotReady()
-    await controller.async_initialize()
-    hass.data[DOMAIN][DATA_CONTROLLER][config_entry.entry_id] = controller
+    async def _fetch_config(self):
+        """Fetch config data."""
+        url = f"{self._url}/1/config"
+        self.data['config'] = await self._fetch_data(url)
 
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(config_entry, "sensor")
-    )
-
-    return True
-
-
-async def async_unload_entry(
-    hass: HomeAssistant, config_entry: config_entries.ConfigEntry
-) -> bool:
-    """Unload a config entry."""
-    _LOGGER.debug(
-        "async_unload_entry({0}), state: {1}".format(
-            config_entry.data[CONF_NAME], config_entry.state
-        )
-    )
-    controller: SummaryController = hass.data[DOMAIN][DATA_CONTROLLER][
-        config_entry.entry_id
-    ]
-    await hass.config_entries.async_forward_entry_unload(config_entry, "sensor")
-    await controller.async_reset()
-    return True
+    async def _fetch_data(self, url: str):
+        """Fetch data from the given URL."""
+        try:
+            async with async_timeout.timeout(10):
+                session = async_get_clientsession(self._hass)
+                async with session.get(url) as response:
+                    if response.status != 200:
+                        _LOGGER.error("Error fetching data from %s, status: %s", url, response.status)
+                        return None
+                    return await response.json()
+        except (asyncio.TimeoutError, aiohttp.ClientError) as err:
+            _LOGGER.error("Error fetching data from %s: %s", url, err)
+            return None
