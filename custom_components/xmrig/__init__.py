@@ -1,5 +1,4 @@
 """XMRIG custom component."""
-# from config.custom_components.xmrpool_stat.sensor import XmrPoolStatisticsSensor
 from copy import copy
 import logging
 import voluptuous as vol
@@ -33,23 +32,29 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 async def async_setup_entry(
     hass: HomeAssistant, config_entry: config_entries.ConfigEntry
 ) -> bool:
-    """Set up a xmrig."""
+    """Set up an XMRIG instance."""
     _LOGGER.debug(
         "async_setup_entry({0}), state: {1}".format(
             config_entry.data[CONF_NAME], config_entry.state
         )
     )
 
-    # create, initialize and preserve controler
+    # Create, initialize, and preserve controller
     controller = SummaryController(hass, config_entry)
-    # await controller.async_update()
-    # if not controller.data:
-    #   raise ConfigEntryNotReady()
     await controller.async_initialize()
+    
+    # Store controller in Home Assistant data
     hass.data[DOMAIN][DATA_CONTROLLER][config_entry.entry_id] = controller
 
+    # Forward entry setup for existing and new sensors
     hass.async_create_task(
         hass.config_entries.async_forward_entry_setup(config_entry, "sensor")
+    )
+    hass.async_create_task(
+        hass.config_entries.async_forward_entry_setup(config_entry, "sensor_threads")
+    )
+    hass.async_create_task(
+        hass.config_entries.async_forward_entry_setup(config_entry, "sensor_config")
     )
 
     return True
@@ -68,5 +73,8 @@ async def async_unload_entry(
         config_entry.entry_id
     ]
     await hass.config_entries.async_forward_entry_unload(config_entry, "sensor")
+    await hass.config_entries.async_forward_entry_unload(config_entry, "sensor_threads")
+    await hass.config_entries.async_forward_entry_unload(config_entry, "sensor_config")
     await controller.async_reset()
+    
     return True
