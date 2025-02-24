@@ -46,15 +46,9 @@ async def async_setup_entry(
     # Store controller in Home Assistant data
     hass.data[DOMAIN][DATA_CONTROLLER][config_entry.entry_id] = controller
 
-    # Forward entry setup for existing and new sensors
+    # Forward entry setup for existing sensors (new sensors will be registered automatically)
     hass.async_create_task(
         hass.config_entries.async_forward_entry_setup(config_entry, "sensor")
-    )
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(config_entry, "sensor_threads")
-    )
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(config_entry, "sensor_config")
     )
 
     return True
@@ -73,8 +67,6 @@ async def async_unload_entry(
         config_entry.entry_id
     ]
     await hass.config_entries.async_forward_entry_unload(config_entry, "sensor")
-    await hass.config_entries.async_forward_entry_unload(config_entry, "sensor_threads")
-    await hass.config_entries.async_forward_entry_unload(config_entry, "sensor_config")
     await controller.async_reset()
     
     return True
