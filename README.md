@@ -2,20 +2,11 @@
 
 **THIS IS AN ALTERED VERSION OF THE ORIGINAL INTEGRATION THAT EXPOSES MORE VALUES TO HOMEASSISTANT!!!!!!**
 
-![GitHub](https://img.shields.io/github/license/hwmland/homeassistant-xmrig?style=plastic)
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-ltgreen.svg?style=plastic)](https://github.com/custom-components/hacs)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/hwmland/homeassistant-xmrig?style=plastic)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/hwmland/homeassistant-xmrig/latest?style=plastic)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hwmland/homeassistant-xmrig/Validate%20with%20HACS?label=Validate%20with%20HACS)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hwmland/homeassistant-xmrig/Validate%20with%20hassfest?label=Validate%20with%20hassfest)
-
-[![buymeacoffee_badge](https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-yellow?style=plastic&logo=buymeacoffee)](https://www.buymeacoffee.com/hwmland)
-
-Monitor and control (future plan) xmrig instances from Home Assistant.
-
 ---
+To contribute to the original integration creator:
 
 Perhaps you want to <a href="https://www.buymeacoffee.com/hwmland" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a> or send me some monero donation to **41eUvPgskizFBRJ16TMnvrA2Bph5aqKQFjLAXQM8KJoaAWc2XrT3Fsn6eNBKX1ZSjxCwhksykDYGLcQojoJZkwe2Ud6C8vB** if you like this project.
+
 
 # Install integration
 
