@@ -1,5 +1,7 @@
 # XMRIG integration for Home Assistant
 
+**THIS IS AN ALTERED VERSION OF THE ORIGINAL INTEGRATION THAT EXPOSES MORE VALUES TO HOMEASSISTANT!!!!!!**
+
 ![GitHub](https://img.shields.io/github/license/hwmland/homeassistant-xmrig?style=plastic)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-ltgreen.svg?style=plastic)](https://github.com/custom-components/hacs)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hwmland/homeassistant-xmrig?style=plastic)
