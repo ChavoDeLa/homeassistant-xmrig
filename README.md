@@ -5,8 +5,12 @@
 ---
 To contribute to the original integration creator:
 
-Perhaps you want to <a href="https://www.buymeacoffee.com/hwmland" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a> or send me some monero donation to **41eUvPgskizFBRJ16TMnvrA2Bph5aqKQFjLAXQM8KJoaAWc2XrT3Fsn6eNBKX1ZSjxCwhksykDYGLcQojoJZkwe2Ud6C8vB** if you like this project.
+Perhaps you want to <a href="https://www.buymeacoffee.com/hwmland" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a> or send him some monero donation to **41eUvPgskizFBRJ16TMnvrA2Bph5aqKQFjLAXQM8KJoaAWc2XrT3Fsn6eNBKX1ZSjxCwhksykDYGLcQojoJZkwe2Ud6C8vB** if you like this project.
 
+or to send me monero:
+84SGevecrfFimjSUY1GwfDS3oZVfYX74t6xEGfw9A3TzMbbEKr7fufMikjbseaKunSGiBur18K1TEA5J9ExMTBAfQJ1SDU6
+
+enjoy!
 
 # Install integration
 
