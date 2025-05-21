@@ -1,5 +1,5 @@
 {
-  "name": "XMRIG integration",
+  "name": "XMRIG integration-extended",
   "render_readme": true,
   "iot_class": "cloud_polling"
 }
