@@ -1,5 +1,5 @@
 {
-  "name": "XMRIG",
+  "name": "XMRIG-extended",
   "codeowners": ["@ChavoDeLa"],
   "domain": "xmrig",
   "config_flow": true,
