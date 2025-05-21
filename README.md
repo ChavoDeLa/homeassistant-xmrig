@@ -1,4 +1,4 @@
-# XMRIG integration for Home Assistant
+# XMRIG integration-EXTENDED for Home Assistant
 
 **THIS IS AN ALTERED VERSION OF THE ORIGINAL INTEGRATION THAT EXPOSES MORE VALUES TO HOMEASSISTANT!!!!!!**
 
