@@ -1,11 +1,11 @@
 {
   "name": "XMRIG",
-  "codeowners": ["@hwmland"],
+  "codeowners": ["@ChavoDeLa"],
   "domain": "xmrig",
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/hwmland/homeassistant-xmrig",
-  "issue_tracker": "https://github.com/hwmland/homeassistant-xmrig/issues",
+  "documentation": "https://github.com/ChavoDeLa/homeassistant-xmrig",
+  "issue_tracker": "https://github.com/ChavoDeLa/homeassistant-xmrig/issues",
   "iot_class": "cloud_polling",
   "after_dependencies": [],
   "version": "0.3.1"
