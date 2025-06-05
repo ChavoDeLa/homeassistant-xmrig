@@ -20,7 +20,7 @@ enjoy!
 
 # Install integration
 
-This integration is distributed using [HACS](https://hacs.xyz/).
+This integration is distributed using [HACS](https://hacs.xyz/). (must add custom repo)
 Alternatively you can install it manually by copying the contents of `custom_components/xmrig/` to `<your config dir>/custom_components/xmrig/`.
 
 # Setup integration
