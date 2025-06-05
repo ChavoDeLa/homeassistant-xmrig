@@ -2,7 +2,7 @@
 
 **THIS IS AN ALTERED VERSION OF THE ORIGINAL INTEGRATION THAT EXPOSES MORE VALUES TO HOMEASSISTANT!!!!!!**
 
-be sure to use http://miner.ip.or.domina:18088 (do not forget http!)
+be sure to use <http://miner.ip.or.domain:port> (do not forget http!)
 be sure to enable API in miner config file, WITH authorization (required).
 fully tested and working with extended parameters. 
 
